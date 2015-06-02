@@ -2,7 +2,7 @@
 
 This project rocks and uses MIT-LICENSE.
 
-Run generators: `rails generate procore_users:install` and `rails generate procore_users:migration`
+Run generators: `rails generate procore_users:install` and `rake procore_users:install:migrations`
 
 Run migration: `bundle exec rake db:migrate`
 
