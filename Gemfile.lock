@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    procore_users (0.0.1)
+    registrar (0.0.1)
       omniauth
       omniauth-google-oauth2
       rails (= 4.2.1)
@@ -126,5 +126,5 @@ PLATFORMS
 
 DEPENDENCIES
   bundler
-  procore_users!
   rake
+  registrar!
