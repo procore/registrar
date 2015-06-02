@@ -1,7 +1,5 @@
 = ProcoreUsers
 
-This project rocks and uses MIT-LICENSE.
-
 Add:
   `gem "procore_users", github: "mcasper/procore_users"`
   `gem "omniauth"`

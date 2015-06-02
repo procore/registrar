@@ -14,16 +14,13 @@ Gem::Specification.new do |s|
   s.homepage      = ""
   s.license       = "MIT"
 
-  s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
-  s.test_files = Dir["test/**/*"]
+  s.files = Dir["{app,config,db,lib}/**/*", "Rakefile", "README.rdoc"]
+  s.test_files = Dir["spec/**/*"]
 
   s.add_dependency "rails", "4.2.1"
-  s.add_dependency "dotenv-rails"
   s.add_dependency "omniauth"
   s.add_dependency "omniauth-google-oauth2"
 
-  s.add_development_dependency "sqlite3"
   s.add_development_dependency "bundler"
-  s.add_development_dependency "pry-rails"
   s.add_development_dependency "rake"
 end
