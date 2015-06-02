@@ -1,10 +1,6 @@
 = ProcoreUsers
 
-Add:
-  `gem "procore_users", github: "mcasper/procore_users"`
-  `gem "omniauth"`
-  `gem "omniauth-google-oauth2"`
-to your Gemfile
+Add `gem "procore_users", github: "mcasper/procore_users"` to your Gemfile
 
 Copy migration: `rake procore_users:install:migrations`
 Run migration: `bundle exec rake db:migrate`
