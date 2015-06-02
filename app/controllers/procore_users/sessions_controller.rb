@@ -1,6 +1,5 @@
 module ProcoreUsers
   class SessionsController < ApplicationController
-    layout ""
     skip_before_filter :authorize
 
     def new
