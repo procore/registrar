@@ -2,13 +2,16 @@
 
 This project rocks and uses MIT-LICENSE.
 
-Run generators: `rails generate procore_users:install` and `rake procore_users:install:migrations`
+Add:
+  `gem "procore_users", github: "mcasper/procore_users"`
+  `gem "omniauth"`
+  `gem "omniauth-google-oauth2"`
+to your Gemfile
 
+Copy migration: `rake procore_users:install:migrations`
 Run migration: `bundle exec rake db:migrate`
 
 Add 'mount ProcoreUsers::Engine, at: "/sessions", as: "users"' to your `config/routes.rb` file
 Add 'get "/auth/google/callback", to: "procore_users/sessions#create"' to your `config/routes.rb' file
 
-Add 'gem "omniauth"' and 'gem "omniauth-google-oauth2"' to your Gemfile
-
-Visit localhost:3000/sessions to authorize!
+Start a rails server and visit localhost:3000/sessions to authorize!
