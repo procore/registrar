@@ -7,7 +7,7 @@ module ProcoreUsers
 
     def create
       if procore_email?
-        user = UserBuilder.new(user_hash).find_or_create
+        user = ProcoreUserBuilder.new(user_hash).find_or_create
         sign_in(user)
 
         flash[:succes] = "Logged In"

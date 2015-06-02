@@ -10,7 +10,7 @@
 #  updated_at :datetime         not null
 #
 
-class ProcoreUser < ActiveRecord::Base
+class ProcoreUsers::ProcoreUser < ActiveRecord::Base
   validates_presence_of :first_name, :last_name, :email
   validates_uniqueness_of :email
 end
