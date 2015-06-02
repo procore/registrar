@@ -1,5 +1,5 @@
-class ProcoreUsers::ApplicationController < ActionController::Base
-  include ProcoreUsers::SessionsHelper
+class Registrar::ApplicationController < ActionController::Base
+  include Registrar::SessionsHelper
 
   protect_from_forgery with: :exception
 

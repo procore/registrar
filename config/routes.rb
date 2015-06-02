@@ -1,4 +1,4 @@
-ProcoreUsers::Engine.routes.draw do
+Registrar::Engine.routes.draw do
   root "sessions#new"
 
   get "/auth/google/callback", to: "sessions#create"

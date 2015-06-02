@@ -1,4 +1,4 @@
-class ProcoreUsers::SessionsController < ProcoreUsers::ApplicationController
+class Registrar::SessionsController < Registrar::ApplicationController
   skip_before_filter :authorize
 
   def new

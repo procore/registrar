@@ -1,4 +1,4 @@
-module ProcoreUsers::SessionsHelper
+module Registrar::SessionsHelper
   def sign_in(user)
     session[:user_id] = user.id
 

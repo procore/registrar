@@ -1,6 +1,6 @@
-module ProcoreUsers
+module Registrar
   class Engine < ::Rails::Engine
-    isolate_namespace ProcoreUsers
+    isolate_namespace Registrar
 
     require "rubygems"
     require "omniauth"

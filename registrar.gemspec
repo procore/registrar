@@ -1,12 +1,12 @@
 $:.push File.expand_path("../lib", __FILE__)
 
 # Maintain your gem's version:
-require "procore_users/version"
+require "registrar/version"
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
-  s.name        = "procore_users"
-  s.version     = ProcoreUsers::VERSION
+  s.name        = "registrar"
+  s.version     = Registrar::VERSION
   s.authors       = ["Procore Engineering"]
   s.email         = ["dev@procore.com"]
   s.summary       = "A central user registration engine for Procore's internal tools"

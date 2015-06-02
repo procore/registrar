@@ -1,11 +1,11 @@
-= ProcoreUsers
+= Registrar
 
-Add `gem "procore_users", github: "mcasper/procore_users"` to your Gemfile
+Add `gem "registrar", github: "mcasper/registrar"` to your Gemfile
 
-Copy migration: `rake procore_users:install:migrations`
+Copy migration: `rake registrar:install:migrations`
 Run migration: `bundle exec rake db:migrate`
 
-Add 'mount ProcoreUsers::Engine, at: "/sessions", as: "users"' to your `config/routes.rb` file
-Add 'get "/auth/google/callback", to: "procore_users/sessions#create"' to your `config/routes.rb' file
+Add 'mount Registrar::Engine, at: "/sessions", as: "users"' to your `config/routes.rb` file
+Add 'get "/auth/google/callback", to: "registrar/sessions#create"' to your `config/routes.rb' file
 
 Start a rails server and visit localhost:3000/sessions to authorize!
