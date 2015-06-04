@@ -19,15 +19,15 @@ class Registrar::SessionsController < Registrar::ApplicationController
   private
 
   def auth_hash
-    request.env["omniauth.auth"]
+    request.env["omniauth.auth"].with_indifferent_access
   end
 
   def user_hash
-    auth_hash["info"].slice("first_name", "last_name", "email")
+    auth_hash[:info].slice("first_name", "last_name", "email")
   end
 
   def email
-    auth_hash["info"]["email"]
+    auth_hash[:info][:email]
   end
 
   def procore_email?
