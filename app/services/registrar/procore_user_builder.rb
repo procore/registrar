@@ -8,7 +8,7 @@ class Registrar::ProcoreUserBuilder
   end
 
   def find_or_create
-    ProcoreUser.where(email: email).first_or_create(attributes)
+    Registrar::ProcoreUser.where(email: email).first_or_create(attributes)
   end
 
   private
