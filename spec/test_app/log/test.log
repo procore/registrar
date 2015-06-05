@@ -444,3 +444,50 @@ Processing by Registrar::SessionsController#new as HTML
   Rendered /home/vagrant/registrar/app/views/registrar/sessions/new.html.erb (0.2ms)
 Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms)
   [1m[35m (0.3ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mRegistrar::ProcoreUser Exists (0.4ms)[0m  SELECT  1 AS one FROM "registrar_procore_users" WHERE "registrar_procore_users"."email" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "registrar_procore_users" ("first_name", "last_name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["first_name", "Example"], ["last_name", "User"], ["email", "user@example.com"], ["created_at", "2015-06-05 18:43:41.426999"], ["updated_at", "2015-06-05 18:43:41.426999"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mRegistrar::ProcoreUser Exists (0.6ms)[0m  SELECT  1 AS one FROM "registrar_procore_users" WHERE "registrar_procore_users"."email" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "registrar_procore_users" ("first_name", "last_name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["first_name", "Example"], ["last_name", "User"], ["email", "user@example.com"], ["created_at", "2015-06-05 18:44:10.010439"], ["updated_at", "2015-06-05 18:44:10.010439"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mRegistrar::ProcoreUser Exists (0.6ms)[0m  SELECT  1 AS one FROM "registrar_procore_users" WHERE "registrar_procore_users"."email" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "registrar_procore_users" ("first_name", "last_name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["first_name", "Example"], ["last_name", "User"], ["email", "user@example.com"], ["created_at", "2015-06-05 18:44:20.910636"], ["updated_at", "2015-06-05 18:44:20.910636"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mRegistrar::ProcoreUser Load (0.2ms)[0m  [1mSELECT  "registrar_procore_users".* FROM "registrar_procore_users" WHERE "registrar_procore_users"."id" = $1 LIMIT 1[0m  [["id", 12]]
+  [1m[35m (0.3ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mRegistrar::ProcoreUser Exists (0.5ms)[0m  SELECT  1 AS one FROM "registrar_procore_users" WHERE "registrar_procore_users"."email" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "registrar_procore_users" ("first_name", "last_name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["first_name", "Example"], ["last_name", "User"], ["email", "user@example.com"], ["created_at", "2015-06-05 18:47:54.049300"], ["updated_at", "2015-06-05 18:47:54.049300"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mRegistrar::ProcoreUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "registrar_procore_users" WHERE "registrar_procore_users"."email" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "registrar_procore_users" ("first_name", "last_name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["first_name", "Example"], ["last_name", "User"], ["email", "user@example.com"], ["created_at", "2015-06-05 18:47:54.054882"], ["updated_at", "2015-06-05 18:47:54.054882"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mRegistrar::ProcoreUser Load (0.1ms)[0m  [1mSELECT  "registrar_procore_users".* FROM "registrar_procore_users" WHERE "registrar_procore_users"."id" = $1 LIMIT 1[0m  [["id", 14]]
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mRegistrar::ProcoreUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "registrar_procore_users" WHERE "registrar_procore_users"."email" = 'user@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "registrar_procore_users" ("first_name", "last_name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["first_name", "Example"], ["last_name", "User"], ["email", "user@example.com"], ["created_at", "2015-06-05 18:47:54.067318"], ["updated_at", "2015-06-05 18:47:54.067318"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mRegistrar::ProcoreUser Load (0.1ms)[0m  SELECT  "registrar_procore_users".* FROM "registrar_procore_users" WHERE "registrar_procore_users"."id" = $1 LIMIT 1  [["id", 15]]
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mRegistrar::ProcoreUser Load (0.2ms)[0m  [1mSELECT  "registrar_procore_users".* FROM "registrar_procore_users" WHERE "registrar_procore_users"."id" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK

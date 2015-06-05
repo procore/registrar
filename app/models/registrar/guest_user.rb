@@ -1,0 +1,2 @@
+class Registrar::GuestUser
+end

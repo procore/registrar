@@ -13,8 +13,4 @@
 class Registrar::ProcoreUser < ActiveRecord::Base
   validates_presence_of :first_name, :last_name, :email
   validates_uniqueness_of :email
-
-  def signed_in?
-    true
-  end
 end
