@@ -18,7 +18,7 @@ module Registrar::SessionsHelper
   end
 
   def current_user
-    @current_user ||= Registrar::ProcoreUser.find_by(id: session[:user_id]) || GuestUser.new
+    @current_user ||= Registrar::ProcoreUser.find_by(id: session[:user_id]) || Registrar::GuestUser.new
   end
 
   private
@@ -26,7 +26,7 @@ module Registrar::SessionsHelper
   def authorize
     unless current_user.is_a?(Registrar::ProcoreUser)
       session[:target] = request.fullpath
-      redirect_to Registrar::Engine.routes.url_helpers.new_session_path
+      redirect_to Registrar::Engine.routes.url_helpers.new_sessions_path
     end
   end
 end
