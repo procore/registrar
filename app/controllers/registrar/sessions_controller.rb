@@ -10,7 +10,13 @@ class Registrar::SessionsController < Registrar::ApplicationController
       sign_in(user)
 
       flash[:succes] = "Logged In"
-      redirect_to root_path
+      redirect = if session[:target]
+                   session[:target]
+                 else
+                   root_path
+                 end
+
+      redirect_to redirect
     else
       render :new
     end

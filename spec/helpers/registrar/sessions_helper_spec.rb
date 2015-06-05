@@ -23,9 +23,5 @@ RSpec.describe Registrar::SessionsHelper, type: :helper do
 
       expect(helper.send(:current_user)).to eq(user)
     end
-
-    it "returns a GuestUser if no user can be found" do
-      expect(helper.send(:current_user)).to be_a Registrar::GuestUser
-    end
   end
 end

@@ -7,6 +7,12 @@ module Registrar::SessionsHelper
     current_user = user
   end
 
+  def sign_out
+    session[:user_id] = nil
+    session[:target] = nil
+    current_user = nil
+  end
+
   def current_user=(user)
     @current_user = user
   end
@@ -19,7 +25,8 @@ module Registrar::SessionsHelper
 
   def authorize
     unless current_user
-      redirect_to new_session_path
+      session[:target] = request.fullpath
+      redirect_to Registrar::Engine.routes.url_helpers.new_session_path
     end
   end
 end
