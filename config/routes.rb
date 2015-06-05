@@ -3,5 +3,5 @@ Registrar::Engine.routes.draw do
 
   get "/auth/google/callback", to: "sessions#create"
 
-  resources :sessions, only: [:new, :create]
+  resource :sessions, only: [:new, :create, :destroy]
 end

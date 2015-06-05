@@ -22,6 +22,12 @@ class Registrar::SessionsController < Registrar::ApplicationController
     end
   end
 
+  def destroy
+    sign_out
+
+    redirect_to Registrar::Engine.routes.url_helpers.new_sessions_path
+  end
+
   private
 
   def auth_hash

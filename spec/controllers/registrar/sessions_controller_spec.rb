@@ -58,4 +58,20 @@ RSpec.describe Registrar::SessionsController, type: :controller do
       end
     end
   end
+
+  describe "DELETE #destroy" do
+    it "signs the current_user out" do
+      session[:user_id] = Registrar::ProcoreUser.create(first_name: "Example", last_name: "User", email: "example@user.com").id
+
+      delete :destroy
+
+      expect(session[:user_id]).to be nil
+    end
+
+    it "redirects to the new_session_path" do
+      delete :destroy
+
+      expect(response).to redirect_to Registrar::Engine.routes.url_helpers.new_sessions_path
+    end
+  end
 end
