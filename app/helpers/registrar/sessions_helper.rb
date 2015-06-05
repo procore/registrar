@@ -12,13 +12,13 @@ module Registrar::SessionsHelper
   end
 
   def current_user
-    @current_user ||= Registrar::ProcoreUser.find_by(id: session[:user_id]) || Registrar::GuestUser.new
+    @current_user ||= Registrar::ProcoreUser.find_by(id: session[:user_id])
   end
 
   private
 
   def authorize
-    unless signed_in?
+    unless current_user
       redirect_to new_session_path
     end
   end
