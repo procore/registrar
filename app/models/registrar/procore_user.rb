@@ -15,6 +15,6 @@ class Registrar::ProcoreUser < ActiveRecord::Base
   validates_uniqueness_of :email
 
   def full_name
-    "#{first_name.capitalize} #{last_name.capitalize}".presence || email
+    "#{first_name.try(:capitalize)} #{last_name.try(:capitalize)}".presence || email
   end
 end
