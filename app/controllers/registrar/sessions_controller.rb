@@ -47,7 +47,7 @@ class Registrar::SessionsController < Registrar::ApplicationController
   end
 
   def procore_email
-    email.split("@").last.include?("procore")
+    email.split("@").last.match(/^procore.com/).present?
   end
 
   def whitelisted_email
