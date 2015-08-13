@@ -1,5 +1,5 @@
 class Whitelist
-  def all
+  def self.all
     [
       "jeff.frost@gmail.com"
     ]
