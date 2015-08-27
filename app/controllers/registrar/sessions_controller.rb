@@ -9,7 +9,6 @@ class Registrar::SessionsController < Registrar::ApplicationController
       user = Registrar::ProcoreUserBuilder.new(user_hash).find_or_create
       sign_in(user)
 
-      flash[:success] = "Logged In"
       redirect = if session[:target]
                    session[:target]
                  else
