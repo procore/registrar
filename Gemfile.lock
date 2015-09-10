@@ -4,7 +4,7 @@ PATH
     registrar (0.0.1)
       omniauth
       omniauth-google-oauth2
-      rails (= 4.2.3)
+      rails (>= 4.2.0)
 
 GEM
   remote: https://rubygems.org/
@@ -129,9 +129,9 @@ GEM
       rspec-mocks (~> 3.3.0)
       rspec-support (~> 3.3.0)
     rspec-support (3.3.0)
-    sprockets (3.3.0)
+    sprockets (3.3.4)
       rack (~> 1.0)
-    sprockets-rails (2.3.2)
+    sprockets-rails (2.3.3)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
@@ -151,4 +151,4 @@ DEPENDENCIES
   rspec-rails
 
 BUNDLED WITH
-   1.10.5
+   1.10.6
