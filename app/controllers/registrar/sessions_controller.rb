@@ -9,11 +9,7 @@ class Registrar::SessionsController < Registrar::ApplicationController
       user = Registrar::ProcoreUserBuilder.new(user_hash).find_or_create
       sign_in(user)
 
-      redirect = if session[:target]
-                   session[:target]
-                 else
-                   root_path
-                 end
+      redirect = session[:target] || root_path
 
       redirect_to redirect
     else
@@ -42,14 +38,18 @@ class Registrar::SessionsController < Registrar::ApplicationController
   end
 
   def authorized_email?
-    procore_email || whitelisted_email
+    (procore_email? || whitelisted_email?) && procore_hosted_domain?
   end
 
-  def procore_email
-    email.split("@").last.match(/^procore.com/).present?
+  def procore_hosted_domain?
+    auth_hash[:extra][:raw_info][:hd].match(/^procore.com$/).present?
   end
 
-  def whitelisted_email
+  def procore_email?
+    email.split("@").last.match(/^procore.com$/).present?
+  end
+
+  def whitelisted_email?
     Whitelist.all.include?(email)
   end
 end
