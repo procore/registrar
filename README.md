@@ -1,4 +1,7 @@
 # Registrar
+A user authentication engine for Procore's internal apps.
+Mounts a Google OAuth authentication gate that expects your Procore Gmail account.
+
 ## Getting Setup
 
 ### Add the gem to your Gemile:
@@ -12,23 +15,25 @@
 ### Mount the engine and register the callback route:
   Add
 
-    `mount Registrar::Engine, at: "/sessions"`
-
-  and
-
     get "/auth/google/callback", to: "registrar/sessions#create"
+    mount Registrar::Engine, at: "/"
 
   to your `config/routes.rb` file
 
 ### Setup the authorize filter
-  Add `include Registrar::SessionsHelper` to your ApplicationController
+  Add
 
-  Then set a before\_action: `before_action :authorize`
+    include Registrar::SessionsHelper
 
-  Now every request that doesn't specifically ignore that before\_action will require the
-  user be logged in!
+    helper_method :current_user
+
+    before_action :authorize
+
+  to your `app/controllers/application_controller.rb` file
+
+  Now every request will require the user be logged in!
 
 ### You're done!
-Now you should have easy authentication logic, with the familiar `current\_user` method available to you.
+Now you should now have automagical authentication logic, and a `current_user` method available to you in all your controllers.
 
-Start a rails server and visit localhost:3000/sessions to authorize!
+Start a rails server and visit localhost:3000/sessions/new to authorize!
