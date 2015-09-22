@@ -41,6 +41,7 @@ RSpec.describe Registrar::SessionsController, type: :controller do
         end.to change(Registrar::ProcoreUser, :count).by(1)
 
         user = Registrar::ProcoreUser.last
+        expect(user.email).to eq "procore@procore.com"
         expect(user.first_name).to eq "Example"
         expect(user.last_name).to eq "User"
       end
