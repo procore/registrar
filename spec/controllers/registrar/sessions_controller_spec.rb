@@ -35,10 +35,14 @@ RSpec.describe Registrar::SessionsController, type: :controller do
         }
       end
 
-      it "calls the user builder with the user hash" do
-        expect_any_instance_of(Registrar::ProcoreUserBuilder).to receive(:find_or_create) { Registrar::ProcoreUser.new }
+      it "creates new user from the user hash" do
+        expect do
+          post :create
+        end.to change(Registrar::ProcoreUser, :count).by(1)
 
-        post :create
+        user = Registrar::ProcoreUser.last
+        expect(user.first_name).to eq "Example"
+        expect(user.last_name).to eq "User"
       end
 
       it "signs in the created user" do
