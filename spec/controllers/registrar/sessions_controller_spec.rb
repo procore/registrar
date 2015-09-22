@@ -31,11 +31,6 @@ RSpec.describe Registrar::SessionsController, type: :controller do
             "email" => "procore@procore.com",
             "first_name" => "Example",
             "last_name" => "User"
-          },
-          extra: {
-            raw_info: {
-              hd: "procore.com"
-            }
           }
         }
       end
@@ -101,32 +96,6 @@ RSpec.describe Registrar::SessionsController, type: :controller do
       allow(@controller).to receive(:email) { "user@procore.com.fake" }
 
       expect(@controller.send(:procore_email?)).to be false
-    end
-  end
-
-  describe "#procore_hosted_domain?" do
-    it "returns true if the google response came from the procore app" do
-      request.env["omniauth.auth"] = {
-        extra: {
-          raw_info: {
-            hd: "procore.com"
-          }
-        }
-      }
-
-      expect(@controller.send(:procore_hosted_domain?)).to be true
-    end
-
-    it "returns false if the google response came from a different app" do
-      request.env["omniauth.auth"] = {
-        extra: {
-          raw_info: {
-            hd: "fakeprocore.com"
-          }
-        }
-      }
-
-      expect(@controller.send(:procore_hosted_domain?)).to be false
     end
   end
 end
