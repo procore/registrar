@@ -32,6 +32,16 @@ mount Registrar::Engine, at: "/"
 
 to your `config/routes.rb` file
 
+### Create views
+
+Create your own layout for sign in page in `app/views/layouts/registrar.html.erb`.
+
+Create your sign in page in `app/views/registrar/sessions/new.html.erb` (feel free to modify the template):
+
+```erb
+<%= link_to "/auth/google", "/auth/google" %>
+```
+
 ### Setup the authorize filter
 
 Add
