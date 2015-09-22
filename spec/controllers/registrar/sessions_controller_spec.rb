@@ -74,28 +74,4 @@ RSpec.describe Registrar::SessionsController, type: :controller do
       expect(response).to redirect_to Registrar::Engine.routes.url_helpers.new_sessions_path
     end
   end
-
-  describe "#procore_email?" do
-    it "returns true if the email is from the procore domain" do
-      allow(@controller).to receive(:email) { "user@procore.com" }
-
-      expect(@controller.send(:procore_email?)).to be true
-    end
-
-    it "returns false if the email is not from the procore domain" do
-      allow(@controller).to receive(:email) { "user@other_domain.com" }
-
-      expect(@controller.send(:procore_email?)).to be false
-    end
-
-    it "matches strictly on 'procore.com'" do
-      allow(@controller).to receive(:email) { "user@fakeprocore.com" }
-
-      expect(@controller.send(:procore_email?)).to be false
-
-      allow(@controller).to receive(:email) { "user@procore.com.fake" }
-
-      expect(@controller.send(:procore_email?)).to be false
-    end
-  end
 end
