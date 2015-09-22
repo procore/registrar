@@ -27,7 +27,6 @@ bundle exec rake db:migrate
 Add
 
 ```ruby
-get "/auth/google/callback", to: "registrar/sessions#create"
 mount Registrar::Engine, at: "/"
 ```
 
