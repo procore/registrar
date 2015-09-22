@@ -38,18 +38,6 @@ class Registrar::SessionsController < Registrar::ApplicationController
   end
 
   def authorized_email?
-    (procore_email? || whitelisted_email?) && procore_hosted_domain?
-  end
-
-  def procore_hosted_domain?
-    auth_hash[:extra][:raw_info][:hd].match(/^procore.com$/).present?
-  end
-
-  def procore_email?
-    email.split("@").last.match(/^procore.com$/).present?
-  end
-
-  def whitelisted_email?
-    Whitelist.all.include?(email)
+    EmailChecker.new(email).authorized?
   end
 end
