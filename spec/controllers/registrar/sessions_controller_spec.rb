@@ -38,18 +38,18 @@ RSpec.describe Registrar::SessionsController, type: :controller do
       it "creates new user from the user hash" do
         expect do
           post :create
-        end.to change(Registrar::ProcoreUser, :count).by(1)
+        end.to change(Registrar::User, :count).by(1)
 
-        user = Registrar::ProcoreUser.last
+        user = Registrar::User.last
         expect(user.email).to eq "procore@procore.com"
         expect(user.first_name).to eq "Example"
         expect(user.last_name).to eq "User"
       end
 
       it "signs in the created user" do
-        user = Registrar::ProcoreUser.new
+        user = Registrar::User.new
 
-        allow_any_instance_of(Registrar::ProcoreUserBuilder).to receive_messages(find_or_create: user)
+        allow_any_instance_of(Registrar::UserBuilder).to receive_messages(find_or_create: user)
 
         expect_any_instance_of(Registrar::SessionsHelper).to receive(:sign_in).with(user)
 
@@ -66,7 +66,7 @@ RSpec.describe Registrar::SessionsController, type: :controller do
 
   describe "DELETE #destroy" do
     it "signs the current_user out" do
-      session[:user_id] = Registrar::ProcoreUser.create(first_name: "Example", last_name: "User", email: "example@user.com").id
+      session[:user_id] = Registrar::User.create(first_name: "Example", last_name: "User", email: "example@user.com").id
 
       delete :destroy
 
