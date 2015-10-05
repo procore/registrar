@@ -10,8 +10,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Procore Engineering"]
   s.email       = ["dev@procore.com"]
   s.summary     = "A central user registration engine for Ruby on Rails applications."
-  s.description = ""
-  s.homepage    = ""
+  s.description = "Quickly setup authentication for internal tools using your Gmail domain."
+  s.homepage    = "https://github.com/procore/registrar"
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "Rakefile", "README.rdoc"]

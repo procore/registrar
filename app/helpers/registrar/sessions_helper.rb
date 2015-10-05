@@ -1,10 +1,12 @@
 module Registrar::SessionsHelper
-  # set before_action :authorize to authenticate
-
   def sign_in(user)
     session[:user_id] = user.id
 
     current_user = user
+  end
+
+  def signed_in?
+    session[:user_id].present?
   end
 
   def sign_out

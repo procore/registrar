@@ -1,63 +1,90 @@
-# Registrar
 
-A user authentication engine for Procore's internal apps.
-Mounts a Google OAuth authentication gate that expects your Procore Gmail account.
+Registrar
+=========
 
-## Getting Setup
+Authentication for internal tools using Gmail OAuth.
 
-### Add the gem to your Gemile:
+Outsource the responsibility of managing user access to Gmail. Instead of
+re-writing the same simple authentication, only allow users on your Gmail
+domain access to your internal tool.
+
+Let Gmail be your active user directory. With Registrar in place, anytime
+someone is given an account on your Gmail domain they will automatically have
+access. This also removes the worry of deactivating a user in all the right
+places - just remove them from Gmail and their access is revoked.
+
+## Installation
+
+Registrar is a Rails Engine. To get started, simply add it your `Gemfile` and
+run `bundle install`
 
 ```ruby
-gem "registrar", github: "procore/registrar"
+gem "registrar"
 ````
 
-### Copy the users migration:
+Registrar comes with a handy install script. Run the installer with
 
 ```
-rake registrar:install:migrations
+rails generate registrar:install
 ```
 
-### Run the migration:
+This will do several things:
+* Create a user model and table (if they do not already exist).
+* Create an initializer
+* Inject the sessions helper and current_user method into `ApplicationController`
+* Mount the engine in your routes file
 
-```
-bundle exec rake db:migrate
-```
-
-### Mount the engine and register the callback route:
-Add
+## Configure
+Registrar also needs to have several options configured before it can run
+properly.
 
 ```ruby
-mount Registrar::Engine, at: "/"
+Registrar.configure do |config|
+  config.google_client_id = "client_id"
+  config.google_client_secret = "client_secret"
+  config.domain = "example.com"
+  config.whitelist += %W(person@other-domain.com)
+end
 ```
 
-to your `config/routes.rb` file
+* You can get the `google_client_id` and `google_client_secret` from
+  [here](wiki/for/getting/google/secrets).
+* The `domain` option specifies the domain to restrict users to. In the example
+  above, only users with an `example.com` email address will be allowed
+  through.
+* The `whitelist` option is intended allow specific users from other domains
+  access to this application.
 
-### Create views
+## Usage
+For authorization you will have an `authorized?` method available to you in your
+controllers. To require that a user be logged in before viewing a particular
+page you can do the following in your controller
 
-Create your own layout for sign in page in `app/views/layouts/registrar.html.erb`.
+```ruby
+before_action :authorized?
+```
 
-Create your sign in page in `app/views/registrar/sessions/new.html.erb` (feel free to modify the template):
+Available Routes:
+
+```
+registrar.signin_path => "/signin"
+registrar.signout_path => "/signout"
+```
+
+## Helper Methods
+* `current_user` - The currently signed in user
+* `signed_in?` - Returns true or false depending if the user is signed in.
+
+## Overwriting Views
+
+Registrar ships with very, very basic pages. To overwrite the layout create a
+layout file in `app/views/layouts/registrar.html.erb`.
+
+Overwrite the sign in page by creating a file in
+`app/views/registrar/sessions/new.html.erb`.
+
+Somewhere on the page you will need the link to authenticate:
 
 ```erb
 <%= link_to "/auth/google", "/auth/google" %>
 ```
-
-### Setup the authorize filter
-
-Add
-
-```ruby
-include Registrar::SessionsHelper
-helper_method :current_user
-before_action :authorize
-```
-
-to your `app/controllers/application_controller.rb` file
-
-Now every request will require the user be logged in!
-
-### You're done!
-
-Now you should now have automagical authentication logic, and a `current_user` method available to you in all your controllers.
-
-Start a rails server and visit localhost:3000/sessions/new to authorize!
