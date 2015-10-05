@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20150612211009) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "registrar_procore_users", force: :cascade do |t|
+  create_table "registrar_users", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email",      null: false

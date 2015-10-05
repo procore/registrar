@@ -1,4 +1,4 @@
-class Registrar::ProcoreUserBuilder
+class Registrar::UserBuilder
   attr_reader :email, :first_name, :last_name
 
   def initialize(user_hash)
@@ -8,7 +8,7 @@ class Registrar::ProcoreUserBuilder
   end
 
   def find_or_create
-    Registrar::ProcoreUser.where(email: email).first_or_create(attributes)
+    Registrar::User.where(email: email).first_or_create(attributes)
   end
 
   private

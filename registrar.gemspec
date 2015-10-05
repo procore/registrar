@@ -7,12 +7,12 @@ require "registrar/version"
 Gem::Specification.new do |s|
   s.name        = "registrar"
   s.version     = Registrar::VERSION
-  s.authors       = ["Procore Engineering"]
-  s.email         = ["dev@procore.com"]
-  s.summary       = "A central user registration engine for Procore's internal tools"
-  s.description   = ""
-  s.homepage      = ""
-  s.license       = "MIT"
+  s.authors     = ["Procore Engineering"]
+  s.email       = ["dev@procore.com"]
+  s.summary     = "A central user registration engine for Ruby on Rails applications."
+  s.description = ""
+  s.homepage    = ""
+  s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "Rakefile", "README.rdoc"]
   s.test_files = Dir["spec/**/*"]

@@ -6,7 +6,7 @@ class Registrar::SessionsController < Registrar::ApplicationController
 
   def create
     if authorized_email?
-      user = Registrar::ProcoreUserBuilder.new(user_hash).find_or_create
+      user = Registrar::UserBuilder.new(user_hash).find_or_create
       sign_in(user)
 
       redirect = session[:target] || root_path

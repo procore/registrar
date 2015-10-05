@@ -1,12 +1,5 @@
-default: &default
-  adapter: postgresql
-  login: registar
-  password: registrar!
-
-development:
-  <<: *default
-  database: registar_development
-
 test:
-  <<: *default
-  database: registrar_test
+ database: registrar_test
+ adapter: postgresql
+ login: registar
+ password: registrar!
