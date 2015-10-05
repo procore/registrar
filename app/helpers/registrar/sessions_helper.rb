@@ -25,7 +25,7 @@ module Registrar::SessionsHelper
 
   private
 
-  def authorize
+  def authorized?
     unless current_user.is_a?(Registrar::User)
       session[:target] = request.fullpath
       redirect_to Registrar::Engine.routes.url_helpers.new_sessions_path
