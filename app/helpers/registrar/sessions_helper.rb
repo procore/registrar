@@ -20,15 +20,15 @@ module Registrar::SessionsHelper
   end
 
   def current_user
-    @current_user ||= Registrar::User.find_by(id: session[:user_id]) || Registrar::GuestUser.new
+    @current_user ||= ::User.find_by(id: session[:user_id])
   end
 
   private
 
   def authorized?
-    unless current_user.is_a?(Registrar::User)
+    unless signed_in?
       session[:target] = request.fullpath
-      redirect_to Registrar::Engine.routes.url_helpers.new_sessions_path
+      redirect_to registrar.signin_path
     end
   end
 end

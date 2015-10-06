@@ -1,11 +1,4 @@
 class EmailChecker
-  WHITELISTED_EMAILS = [
-    "jeff.frost@gmail.com",
-    "patrik.bona@toptal.com",
-    "peter@rubytune.com",
-    "sudara@rubytune.com"
-  ]
-
   attr_reader :email
 
   def initialize(email)
@@ -13,16 +6,20 @@ class EmailChecker
   end
 
   def authorized?
-    procore_email? || whitelisted_email?
+    email_in_domain? || whitelisted_email?
   end
 
   private
 
-  def procore_email?
-    !!email.match(/@procore.com\z/)
+  def email_in_domain?
+    !!domain.match(/^#{Registrar.configuration.domain}$/)
   end
 
   def whitelisted_email?
-    WHITELISTED_EMAILS.include?(email)
+    Registrar.configuration.whitelist.include?(email)
+  end
+
+  def domain
+    email.split('@').last
   end
 end

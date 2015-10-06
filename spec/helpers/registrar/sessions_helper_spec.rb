@@ -1,7 +1,13 @@
 require "rails_helper"
 
 RSpec.describe Registrar::SessionsHelper, type: :helper do
-  let(:user) { Registrar::User.create(first_name: "Example", last_name: "User", email: "user@example.com") }
+  let(:user) do
+    User.create!(
+      first_name: "Example",
+      last_name: "User",
+      email: "user@example.com"
+    )
+  end
 
   describe "sign_in" do
     it "sets the passed in user's id to session[:user_id]" do

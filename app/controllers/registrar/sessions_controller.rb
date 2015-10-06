@@ -1,12 +1,12 @@
 class Registrar::SessionsController < Registrar::ApplicationController
-  skip_before_filter :authorize
+  skip_before_filter :authorized?
 
   def new
   end
 
   def create
     if authorized_email?
-      user = Registrar::UserBuilder.new(user_hash).find_or_create
+      user = User.where(email: email).first_or_create(user_hash)
       sign_in(user)
 
       redirect = session[:target] || root_path
@@ -20,7 +20,7 @@ class Registrar::SessionsController < Registrar::ApplicationController
   def destroy
     sign_out
 
-    redirect_to Registrar::Engine.routes.url_helpers.new_sessions_path
+    redirect_to registrar.signin_path
   end
 
   private

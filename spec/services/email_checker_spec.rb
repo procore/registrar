@@ -1,19 +1,24 @@
-require_relative "../../app/services/email_checker.rb"
+require "rails_helper"
 
 RSpec.describe EmailChecker do
   describe "#authorized?" do
-    it "authorizes procore email addresses" do
-      expect(EmailChecker.new("user@procore.com").authorized?).to be true
+    before do
+      Registrar.configuration.domain = "example.com"
+    end
+
+    it "authorizes email addresses from the configured domain" do
+      expect(EmailChecker.new("user@example.com").authorized?).to be true
     end
 
     it "authorizes whitelisted emails" do
-      expect(EmailChecker.new(EmailChecker::WHITELISTED_EMAILS.first).authorized?).to be true
+      Registrar.configuration.whitelist += ["user@other-domain.com"]
+      expect(EmailChecker.new("user@other-domain.com").authorized?).to be true
     end
 
-    it "doesn't authorize non-procore and not whitelisted emails" do
-      expect(EmailChecker.new("user@other_domain.com").authorized?).to be false
-      expect(EmailChecker.new("user@fakeprocore.com").authorized?).to be false
-      expect(EmailChecker.new("user@procore.com.fake").authorized?).to be false
+    it "doesn't authorize non-domain and not whitelisted emails" do
+      expect(EmailChecker.new("user@other_example.com").authorized?).to be false
+      expect(EmailChecker.new("user@fakeexample.com").authorized?).to be false
+      expect(EmailChecker.new("user@example.com.fake").authorized?).to be false
     end
   end
 end

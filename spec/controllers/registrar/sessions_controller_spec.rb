@@ -3,6 +3,10 @@ require "rails_helper"
 RSpec.describe Registrar::SessionsController, type: :controller do
   routes { Registrar::Engine.routes }
 
+  before do
+    Registrar.configuration.domain = "example.com"
+  end
+
   describe "GET #new" do
     it "renders the 'new' template" do
       get :new
@@ -12,10 +16,10 @@ RSpec.describe Registrar::SessionsController, type: :controller do
   end
 
   describe "POST #create" do
-    it "checks if the email is a procore email" do
+    it "checks if the email is in the specified domain" do
       request.env["omniauth.auth"] = {
         info: {
-          email: "not_procore@gmail.com"
+          email: "not_example@gmail.com"
         }
       }
 
@@ -24,11 +28,11 @@ RSpec.describe Registrar::SessionsController, type: :controller do
       expect(response).to render_template :new
     end
 
-    context "when it is a valid procore email" do
+    context "when it is a valid email" do
       before do
         request.env["omniauth.auth"] = {
           info: {
-            "email" => "procore@procore.com",
+            "email" => "user@example.com",
             "first_name" => "Example",
             "last_name" => "User"
           }
@@ -38,22 +42,12 @@ RSpec.describe Registrar::SessionsController, type: :controller do
       it "creates new user from the user hash" do
         expect do
           post :create
-        end.to change(Registrar::User, :count).by(1)
+        end.to change(User, :count).by(1)
 
-        user = Registrar::User.last
-        expect(user.email).to eq "procore@procore.com"
+        user = User.last
+        expect(user.email).to eq "user@example.com"
         expect(user.first_name).to eq "Example"
         expect(user.last_name).to eq "User"
-      end
-
-      it "signs in the created user" do
-        user = Registrar::User.new
-
-        allow_any_instance_of(Registrar::UserBuilder).to receive_messages(find_or_create: user)
-
-        expect_any_instance_of(Registrar::SessionsHelper).to receive(:sign_in).with(user)
-
-        post :create
       end
 
       it "redirects to the root_path" do
@@ -66,7 +60,7 @@ RSpec.describe Registrar::SessionsController, type: :controller do
 
   describe "DELETE #destroy" do
     it "signs the current_user out" do
-      session[:user_id] = Registrar::User.create(first_name: "Example", last_name: "User", email: "example@user.com").id
+      session[:user_id] = User.create!(first_name: "Example", last_name: "User", email: "example@user.com").id
 
       delete :destroy
 
@@ -76,7 +70,7 @@ RSpec.describe Registrar::SessionsController, type: :controller do
     it "redirects to the new_session_path" do
       delete :destroy
 
-      expect(response).to redirect_to Registrar::Engine.routes.url_helpers.new_sessions_path
+      expect(response).to redirect_to Registrar::Engine.routes.url_helpers.signin_path
     end
   end
 end
