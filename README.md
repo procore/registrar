@@ -56,12 +56,12 @@ end
   access to this application.
 
 ## Usage
-For authorization you will have an `require_signed_in_user?` method available to you in your
+For authorization you will have an `require_signed_in_user` method available to you in your
 controllers. To require that a user be logged in before viewing a particular
 page you can do the following in your controller
 
 ```ruby
-before_action :require_signed_in_user?
+before_action :require_signed_in_user
 ```
 
 Available Routes:
