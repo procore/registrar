@@ -6,7 +6,7 @@ module Registrar::SessionsHelper
   end
 
   def signed_in?
-    session[:user_id].present?
+    current_user.present?
   end
 
   def sign_out
@@ -25,7 +25,7 @@ module Registrar::SessionsHelper
 
   private
 
-  def authorized?
+  def require_signed_in_user
     unless signed_in?
       session[:target] = request.fullpath
       redirect_to registrar.signin_path

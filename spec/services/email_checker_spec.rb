@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe EmailChecker do
-  describe "#authorized?" do
+  describe "#require_signed_in_user" do
     before do
       Registrar.configuration.domain = "example.com"
     end

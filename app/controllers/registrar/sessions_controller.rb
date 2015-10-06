@@ -1,12 +1,12 @@
 class Registrar::SessionsController < Registrar::ApplicationController
-  skip_before_filter :authorized?
+  skip_before_filter :require_signed_in_user
 
   def new
   end
 
   def create
     if authorized_email?
-      user = User.where(email: email).first_or_create(user_hash)
+      user = User.create_with(user_hash).find_or_create_by(email: email)
       sign_in(user)
 
       redirect = session[:target] || root_path
