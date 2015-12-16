@@ -40,10 +40,10 @@ properly.
 
 ```ruby
 Registrar.configure do |config|
-  config.google_client_id = "client_id"
-  config.google_client_secret = "client_secret"
+  config.google_client_id = ENV.fetch("GOOGLE_CLIENT_ID")
+  config.google_client_secret = ENV.fetch("GOOGLE_CLIENT_SECRET")
   config.domain = "example.com"
-  config.whitelist += %W(person@other-domain.com)
+  config.whitelist += %W(person@other_domain.com)
 end
 ```
 
