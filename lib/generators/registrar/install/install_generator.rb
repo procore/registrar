@@ -10,8 +10,8 @@ module Registrar
         initializer "registrar.rb" do
           <<-RUBY.strip_heredoc
             Registrar.configure do |config|
-              config.google_client_id = "your_client_id"
-              config.google_client_secret = "your_client_secret"
+              config.google_client_id = ENV.fetch("GOOGLE_CLIENT_ID")
+              config.google_client_secret = ENV.fetch("GOOGLE_CLIENT_SECRET")
               config.domain = "your_gmail_domain"
               config.whitelist += %W()
             end
@@ -39,7 +39,7 @@ module Registrar
 
       def add_or_create_user
         unless File.exist? "app/models/user.rb"
-          create_file "app/models/user.rb", 
+          create_file "app/models/user.rb",
             <<-'RUBY'.strip_heredoc
             class User < ActiveRecord::Base
               validates :email, presence: true, uniqueness: true
