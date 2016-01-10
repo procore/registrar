@@ -1,5 +1,5 @@
 class Registrar::SessionsController < Registrar::ApplicationController
-  skip_before_filter :require_signed_in_user
+  skip_before_action :require_signed_in_user
 
   def new
   end
