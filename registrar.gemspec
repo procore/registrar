@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.name        = "registrar"
   s.version     = Registrar::VERSION
   s.authors     = ["Procore Engineering"]
-  s.email       = ["dev@procore.com"]
+  s.email       = ["opensource@procore.com"]
   s.summary     = "A central user registration engine for Ruby on Rails applications."
   s.description = "Quickly setup authentication for internal tools using your Gmail domain."
   s.homepage    = "https://github.com/procore/registrar"

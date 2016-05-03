@@ -66,7 +66,7 @@ before_action :require_signed_in_user
 
 Available Routes:
 
-```
+```ruby
 registrar.signin_path => "/signin"
 registrar.signout_path => "/signout"
 ```
@@ -90,7 +90,7 @@ Somewhere on the page you will need the link to authenticate:
 ```
 
 ## Licence
-Registrar is copyright © 2015 Procore. It is free software, and may be redistributed under the terms specified in the LICENSE file.
+Registrar is copyright © 2016 Procore. It is free software, and may be redistributed under the terms specified in the LICENSE file.
 
 ## About Procore
 
@@ -102,6 +102,7 @@ Registrar is copyright © 2015 Procore. It is free software, and may be redistri
 
 Registrar is maintained by Procore Technologies.
 
-Procore - building the software that builds the world. 
+Procore - building the software that builds the world.
 
 Learn more about the #1 most widely used construction management software at [procore.com](https://www.procore.com/)
+Contact us at opensource@procore.com
