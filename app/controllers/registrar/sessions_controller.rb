@@ -1,6 +1,4 @@
 class Registrar::SessionsController < Registrar::ApplicationController
-  skip_action_callback :require_signed_in_user
-
   def new
   end
 
