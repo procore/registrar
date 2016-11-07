@@ -7,7 +7,7 @@ class Registrar::SessionsController < Registrar::ApplicationController
       user = User.create_with(user_hash).find_or_create_by(email: email)
       sign_in(user)
 
-      redirect = session[:target] || root_path
+      redirect = session[:target] || Registrar.configuration.after_signin_url
 
       redirect_to redirect
     else
@@ -18,7 +18,7 @@ class Registrar::SessionsController < Registrar::ApplicationController
   def destroy
     sign_out
 
-    redirect_to registrar.signin_path
+    redirect_to Registrar.configuration.after_signout_url || registrar.signin_path
   end
 
   private

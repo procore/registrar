@@ -50,10 +50,20 @@ RSpec.describe Registrar::SessionsController, type: :controller do
         expect(user.last_name).to eq "User"
       end
 
-      it "redirects to the root_path" do
+      it "redirects to the default redirect_path" do
         post :create
 
         expect(response).to redirect_to root_path
+      end
+
+      context "custom redirect_url" do
+        it "will use any custom redirect_urls" do
+          Registrar.configuration.after_signin_url = "/something_custom"
+
+          post :create
+
+          expect(response).to redirect_to "/something_custom"
+        end
       end
     end
   end
@@ -67,10 +77,20 @@ RSpec.describe Registrar::SessionsController, type: :controller do
       expect(session[:user_id]).to be nil
     end
 
-    it "redirects to the new_session_path" do
+    it "redirects to the new_session_path by default" do
       delete :destroy
 
       expect(response).to redirect_to Registrar::Engine.routes.url_helpers.signin_path
+    end
+
+    it "will use a custom after sign out url" do
+      Registrar.configuration.after_signout_url = "/custom_signout"
+      delete :destroy
+
+      # Reset State
+      Registrar.configuration.after_signout_url = nil
+
+      expect(response).to redirect_to "/custom_signout"
     end
   end
 end

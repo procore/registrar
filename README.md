@@ -40,10 +40,17 @@ properly.
 
 ```ruby
 Registrar.configure do |config|
+  # Required
   config.google_client_id = ENV.fetch("GOOGLE_CLIENT_ID")
   config.google_client_secret = ENV.fetch("GOOGLE_CLIENT_SECRET")
   config.domain = "example.com"
+
+  # Optional
   config.whitelist += %W(person@other_domain.com)
+  config.signin_url = "/signin"
+  config.signout_url = "/signout"
+  config.after_signin_url = "/"
+  config.after_signout_url = "/signout"
 end
 ```
 
@@ -67,8 +74,8 @@ before_action :require_signed_in_user
 Available Routes:
 
 ```ruby
-registrar.signin_path => "/signin"
-registrar.signout_path => "/signout"
+registrar.signin_path
+registrar.signout_path
 ```
 
 ## Helper Methods

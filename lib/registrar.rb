@@ -11,10 +11,35 @@ module Registrar
   end
 
   class Configuration
-    attr_accessor :google_client_id, :google_client_secret, :domain, :whitelist
+    attr_accessor :google_client_id
+    attr_accessor :google_client_secret
+
+    # Domain to validate users against. Anyone who authenticates with an email
+    # in this domain will be granted access.
+    attr_accessor :domain
+
+    # A list of additional emails to allow access that are outside of the
+    # domain specified
+    attr_accessor :whitelist
+
+    # URL to render the signin form. Defaults to /signin
+    attr_accessor :signin_url
+
+    # URL to signout
+    attr_accessor :signout_url
+
+    # Set a url to redirect to after successful signin. Defaults to the root
+    # path.
+    attr_accessor :after_signin_url
+
+    # Set a url to redirect to after signing out. Defaults to the signin path.
+    attr_accessor :after_signout_url
 
     def initialize
       @whitelist = []
+      @after_signin_url = "/"
+      @signin_url = "/signin"
+      @signout_url = "/signout"
     end
   end
 end
