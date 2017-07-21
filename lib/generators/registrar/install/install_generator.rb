@@ -10,8 +10,8 @@ module Registrar
         initializer "registrar.rb" do
           <<-RUBY.strip_heredoc
             Registrar.configure do |config|
-              config.google_client_id = ENV.fetch("GOOGLE_CLIENT_ID")
-              config.google_client_secret = ENV.fetch("GOOGLE_CLIENT_SECRET")
+              config.google_client_id = ENV.fetch("GOOGLE_CLIENT_ID", nil)
+              config.google_client_secret = ENV.fetch("GOOGLE_CLIENT_SECRET", nil)
               config.domain = "your_gmail_domain"
               config.whitelist += %W()
             end
