@@ -1,7 +1,7 @@
 module Registrar::SessionsHelper
   def sign_in(user)
     session[:user_id] = user.id
-    cookies.signed[:user_id] = user.id if with_user_cookie?
+    cookies.encrypted[:user_id] = user.id if with_user_cookie?
 
     current_user = user
   end
@@ -13,7 +13,7 @@ module Registrar::SessionsHelper
   def sign_out
     session[:user_id] = nil
     session[:target] = nil
-    cookies.signed[:user_id] = nil if with_user_cookie?
+    cookies.encrypted[:user_id] = nil if with_user_cookie?
     current_user = nil
   end
 
