@@ -1,6 +1,7 @@
 module Registrar::SessionsHelper
   def sign_in(user)
     session[:user_id] = user.id
+    cookies.encrypted[:user_id] = user.id if with_user_cookie?
 
     current_user = user
   end
@@ -12,6 +13,7 @@ module Registrar::SessionsHelper
   def sign_out
     session[:user_id] = nil
     session[:target] = nil
+    cookies.encrypted[:user_id] = nil if with_user_cookie?
     current_user = nil
   end
 
@@ -30,5 +32,9 @@ module Registrar::SessionsHelper
       session[:target] = request.fullpath
       redirect_to registrar.signin_path
     end
+  end
+
+  def with_user_cookie?
+    @_with_user_cookie ||= Registrar.configuration.with_user_cookie
   end
 end

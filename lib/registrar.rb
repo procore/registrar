@@ -35,11 +35,15 @@ module Registrar
     # Set a url to redirect to after signing out. Defaults to the signin path.
     attr_accessor :after_signout_url
 
+    # Set a user_id cookie on /signin and clear it on /signout. Defaults to false.
+    attr_accessor :with_user_cookie
+
     def initialize
       @whitelist = []
       @after_signin_url = "/"
       @signin_url = "/signin"
       @signout_url = "/signout"
+      @with_user_cookie = false
     end
   end
 end

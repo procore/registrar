@@ -51,6 +51,7 @@ Registrar.configure do |config|
   config.signout_url = "/signout"
   config.after_signin_url = "/"
   config.after_signout_url = "/signout"
+  config.with_user_cookie = true
 end
 ```
 
@@ -61,6 +62,8 @@ end
   through.
 * The `whitelist` option is intended allow specific users from other domains
   access to this application.
+* The `with_user_cookie` option should be used when you need `cookies[:user_id]`
+  to be set during your normal sessions flow.
 
 ## Usage
 For authorization you will have an `require_signed_in_user` method available to you in your
