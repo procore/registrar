@@ -13,7 +13,7 @@ module Registrar
               config.google_client_id = ENV.fetch("GOOGLE_CLIENT_ID", nil)
               config.google_client_secret = ENV.fetch("GOOGLE_CLIENT_SECRET", nil)
               config.domain = "your_gmail_domain"
-              config.whitelist += %W()
+              config.whitelist += []
             end
           RUBY
         end
