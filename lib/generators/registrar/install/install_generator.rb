@@ -39,13 +39,14 @@ module Registrar
 
       def add_or_create_user
         unless File.exist? "app/models/user.rb"
+          parent_class = Rails::VERSION::STRING >= "5.0" ? "ApplicationRecord" : "ActiveRecord::Base"
           create_file "app/models/user.rb",
-            <<-'RUBY'.strip_heredoc
-            class User < ActiveRecord::Base
+            <<-RUBY.strip_heredoc
+            class User < #{parent_class}
               validates :email, presence: true, uniqueness: true
 
               def full_name
-                "#{first_name.try(:capitalize)} #{last_name.try(:capitalize)}".presence || email
+                "\#{first_name.try(:capitalize)} \#{last_name.try(:capitalize)}".presence || email
               end
             end
           RUBY
