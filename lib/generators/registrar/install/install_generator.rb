@@ -31,7 +31,7 @@ module Registrar
       def mount_engine
         inject_into_file "config/routes.rb", after: "Rails.application.routes.draw do\n" do
           <<-RUBY.strip_heredoc.indent(2)
-            mount Registrar::Engine, at: '/'
+            mount Registrar::Engine, at: "/"
 
           RUBY
         end
