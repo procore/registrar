@@ -11,7 +11,7 @@ RSpec.describe Registrar::SessionsController, type: :controller do
     it "renders the 'new' template" do
       get :new
 
-      expect(response).to render_template :new
+      expect(response).to  have_http_status(200)
     end
   end
 
@@ -25,7 +25,7 @@ RSpec.describe Registrar::SessionsController, type: :controller do
 
       post :create
 
-      expect(response).to render_template :new
+      expect(response).to  have_http_status(200)
     end
 
     context "when it is a valid email" do
