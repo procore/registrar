@@ -19,7 +19,8 @@ Registrar is a Rails Engine. To get started, simply add it your `Gemfile` and
 run `bundle install`
 
 ```ruby
-gem "registrar", git: "git://github.com/procore/registrar"
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+gem "registrar", github: "procore/registrar"
 ````
 
 Registrar comes with a handy install script. Run the installer with
