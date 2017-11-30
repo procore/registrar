@@ -13,6 +13,7 @@ module Registrar
   class Configuration
     attr_accessor :google_client_id
     attr_accessor :google_client_secret
+    attr_accessor :redirect_uri
 
     # Domain to validate users against. Anyone who authenticates with an email
     # in this domain will be granted access.
@@ -44,6 +45,7 @@ module Registrar
       @signin_url = "/signin"
       @signout_url = "/signout"
       @with_user_cookie = false
+      @redirect_uri = nil
     end
   end
 end
