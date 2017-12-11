@@ -13,7 +13,6 @@ module Registrar
   class Configuration
     attr_accessor :google_client_id
     attr_accessor :google_client_secret
-    attr_accessor :redirect_uri
 
     # Domain to validate users against. Anyone who authenticates with an email
     # in this domain will be granted access.
@@ -38,6 +37,9 @@ module Registrar
 
     # Set a user_id cookie on /signin and clear it on /signout. Defaults to false.
     attr_accessor :with_user_cookie
+
+    # Sets your oauth redirect uri
+    attr_accessor :redirect_uri
 
     def initialize
       @whitelist = []

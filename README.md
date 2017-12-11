@@ -53,6 +53,7 @@ Registrar.configure do |config|
   config.after_signin_url = "/"
   config.after_signout_url = "/signout"
   config.with_user_cookie = true
+  config.redirect_uri = "https://mydomain.com/oauth/consume"
 end
 ```
 
@@ -65,6 +66,8 @@ end
   access to this application.
 * The `with_user_cookie` option should be used when you need `cookies[:user_id]`
   to be set during your normal sessions flow.
+* The `redirect_uri` option should only be used if you don't want to use the
+  default of `<domain initiated from>/auth/google/callback`
 
 ## Usage
 For authorization you will have an `require_signed_in_user` method available to you in your
