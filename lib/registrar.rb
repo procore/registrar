@@ -38,12 +38,16 @@ module Registrar
     # Set a user_id cookie on /signin and clear it on /signout. Defaults to false.
     attr_accessor :with_user_cookie
 
+    # Sets your oauth redirect uri
+    attr_accessor :redirect_uri
+
     def initialize
       @whitelist = []
       @after_signin_url = "/"
       @signin_url = "/signin"
       @signout_url = "/signout"
       @with_user_cookie = false
+      @redirect_uri = nil
     end
   end
 end
