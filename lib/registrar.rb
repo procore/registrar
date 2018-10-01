@@ -41,6 +41,12 @@ module Registrar
     # Sets your oauth redirect uri
     attr_accessor :redirect_uri
 
+    # Sets the key to use in the session for identifying the user
+    attr_accessor :session_key
+
+    # Sets the class to use for session management
+    attr_accessor :session_manager_class
+
     def initialize
       @whitelist = []
       @after_signin_url = "/"
@@ -48,6 +54,8 @@ module Registrar
       @signout_url = "/signout"
       @with_user_cookie = false
       @redirect_uri = nil
+      @session_key = :user_id
+      @session_manager_class = Registrar::SessionManager
     end
   end
 end

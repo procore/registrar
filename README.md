@@ -1,4 +1,3 @@
-
 Registrar
 =========
 
@@ -54,6 +53,8 @@ Registrar.configure do |config|
   config.after_signout_url = "/signout"
   config.with_user_cookie = true
   config.redirect_uri = "https://mydomain.com/oauth/consume"
+  config.session_key = :user_email
+  config.session_manager_class = MySessionManager
 end
 ```
 
@@ -103,8 +104,43 @@ Somewhere on the page you will need the link to authenticate:
 <%= link_to "/auth/google", "/auth/google" %>
 ```
 
+## Custom Session Identifiers
+
+If you don't want the default of `user.id` to be used as your session
+identifier, then you can use the `session_manager_class` setting to provide
+your own class for session management.
+
+```ruby
+# config/initializers/registrar.rb
+
+Registrar.configure do |config|
+  config.session_manager_class = MySessionManager
+end
+```
+
+Your session manager class has to define two methods, `self.session_id` and
+`self.find_by_session_id`. The former is used to determine what to set in
+the session upon successful login, and the latter determines how you look up
+a user with that identifier.
+
+```ruby
+# app/services/my_session_manager.rb
+
+class MySessionManager
+  class << self
+    def session_id(user)
+      user.email
+    end
+
+    def find_by_session_id(session_id)
+      ::User.find_by(email: session_id)
+    end
+  end
+end
+```
+
 ## Licence
-Registrar is copyright © 2016 Procore. It is free software, and may be redistributed under the terms specified in the LICENSE file.
+Registrar is copyright © 2018 Procore. It is free software, and may be redistributed under the terms specified in the LICENSE file.
 
 ## About Procore
 
