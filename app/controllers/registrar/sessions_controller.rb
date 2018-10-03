@@ -36,6 +36,6 @@ class Registrar::SessionsController < Registrar::ApplicationController
   end
 
   def authorized_email?
-    EmailChecker.new(email).authorized?
+    Registrar::EmailChecker.new(email).authorized?
   end
 end

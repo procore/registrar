@@ -7,11 +7,15 @@ RSpec.describe Registrar::SessionsController, type: :controller do
     Registrar.configuration.domain = "example.com"
   end
 
+  after do
+    Registrar.configuration = Registrar::Configuration.new
+  end
+
   describe "GET #new" do
     it "renders the 'new' template" do
       get :new
 
-      expect(response).to  have_http_status(200)
+      expect(response).to have_http_status(200)
     end
   end
 
@@ -25,7 +29,7 @@ RSpec.describe Registrar::SessionsController, type: :controller do
 
       post :create
 
-      expect(response).to  have_http_status(200)
+      expect(response).to have_http_status(200)
     end
 
     context "when it is a valid email" do
