@@ -18,8 +18,8 @@ Gem::Specification.new do |s|
   s.test_files = Dir["spec/**/*"]
 
   s.add_dependency "rails", ">= 4.2.0"
-  s.add_dependency "omniauth"
-  s.add_dependency "omniauth-google-oauth2"
+  s.add_dependency "omniauth", ">= 1.8.1"
+  s.add_dependency "omniauth-google-oauth2", ">= 0.5.0"
 
   s.add_development_dependency "bundler"
   s.add_development_dependency "pg"
