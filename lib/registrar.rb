@@ -60,6 +60,7 @@ module Registrar
       @sub_domain = nil
       @session_key = :user_id
       @session_manager_class = Registrar::SessionManager
+      env['rack.session']['omniauth.origin'] = @sub_domain
     end
   end
 end
