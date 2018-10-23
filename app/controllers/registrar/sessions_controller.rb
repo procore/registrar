@@ -9,6 +9,10 @@ class Registrar::SessionsController < Registrar::ApplicationController
 
       redirect = session[:target] || Registrar.configuration.after_signin_url
 
+      if Registrar.configuration.sub_domain and !redirect.include?("?state=")
+        redirect += "?state=#{Registrar.configuration.sub_domain}"
+      end
+
       redirect_to redirect
     else
       render :new

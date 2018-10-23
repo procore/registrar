@@ -41,6 +41,9 @@ module Registrar
     # Sets your oauth redirect uri
     attr_accessor :redirect_uri
 
+    # Sets subdomain
+    attr_accessor :sub_domain
+
     # Sets the key to use in the session for identifying the user
     attr_accessor :session_key
 
@@ -54,6 +57,7 @@ module Registrar
       @signout_url = "/signout"
       @with_user_cookie = false
       @redirect_uri = nil
+      @sub_domain = nil
       @session_key = :user_id
       @session_manager_class = Registrar::SessionManager
     end
