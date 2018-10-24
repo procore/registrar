@@ -52,6 +52,13 @@ RSpec.describe Registrar::SessionsHelper, type: :helper do
       expect(helper.send(:current_user)).to eq(user)
     end
 
+    it "respects custom states" do
+      Registrar.configure { |config| config.state = "subdomain" }
+      helper.send(:sign_in, user)
+
+      expect(helper.send(:current_user)).to eq(user)
+    end
+
     it "sets current_user = user" do
       helper.send(:sign_in, user)
 
