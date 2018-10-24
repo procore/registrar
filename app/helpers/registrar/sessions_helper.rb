@@ -1,4 +1,14 @@
 module Registrar::SessionsHelper
+  def sign_in_path
+    path = "/auth/google"
+
+    if Registrar.configuration&.state
+      "#{path}?state=#{Registrar.configuration.state}"
+    else
+      path
+    end
+  end
+
   def sign_in(user)
     session[session_key] = session_manager_class.session_id(user)
     cookies.encrypted[session_key] = session_manager_class.session_id(user) if with_user_cookie?
