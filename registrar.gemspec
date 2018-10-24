@@ -17,6 +17,7 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*", "Rakefile", "README.rdoc"]
   s.test_files = Dir["spec/**/*"]
 
+  s.add_dependency "listen"
   s.add_dependency "rails", ">= 4.2.0"
   s.add_dependency "omniauth", ">= 1.8.1"
   s.add_dependency "omniauth-google-oauth2", ">= 0.5.0"
