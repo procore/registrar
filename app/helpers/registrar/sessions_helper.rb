@@ -2,7 +2,7 @@ module Registrar::SessionsHelper
   def sign_in_path
     path = "/auth/google"
 
-    if Registrar.configuration.&state
+    if Registrar.configuration&.state
       "#{path}?state=#{Registrar.configuration.state}"
     else
       path
