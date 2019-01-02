@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", ">= 4.2.0"
   s.add_dependency "omniauth", ">= 1.8.1"
-  s.add_dependency "omniauth-google-oauth2", ">= 0.5.0"
+  s.add_dependency "omniauth-google-oauth2", ">= 0.6.0"
 
   s.add_development_dependency "bundler"
   s.add_development_dependency "pg"
