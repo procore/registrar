@@ -7,3 +7,4 @@ spec/test_app/log/*.log
 spec/test_app/tmp/
 spec/test_app/.sass-cache
 Gemfile.lock
+/spec/test_app/config/database.yml
