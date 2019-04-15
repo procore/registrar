@@ -139,6 +139,20 @@ class MySessionManager
 end
 ```
 
+# Local development
+
+## Testing
+
+1. run `bundle` in the root dir
+2. cp `spec/test_app/config/database.yml.sample` to `spec/test_app/config/database.yml` and edit for your setup
+3. export RAILS_ENV=test
+4. `cd spec/test_app`
+5. `rake db:create
+6. `cd ../..`
+7. rake db:setup db:migrate
+
+You can now run `rspec` in the root directory.
+
 ## Licence
 Registrar is copyright © 2018 Procore. It is free software, and may be redistributed under the terms specified in the LICENSE file.
 
